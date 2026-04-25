@@ -172,40 +172,58 @@ function App() {
       
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#111827] p-6 flex flex-col justify-between shadow-[10px_0_30px_rgba(0,0,0,0.5)] border-r border-gray-800/50 transition-transform duration-300 transform 
-  ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} xl:relative xl:translate-x-0`}>
-  
-      {/* Mobile Close Button */}
-      <button onClick={() => setIsSidebarOpen(false)} className="xl:hidden absolute top-5 right-5 text-gray-500">
-       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-       </button>  <div>
-          <h1 className="text-2xl font-bold text-blue-500 mb-10 tracking-widest">INUKA<span className="text-white">.OS</span></h1>
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} xl:relative xl:translate-x-0`}>
+        
+        <button onClick={() => setIsSidebarOpen(false)} className="xl:hidden absolute top-5 right-5 text-gray-500 hover:text-white">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+
+        <div>
+          <h1 className={`text-2xl font-bold ${c.textPrimary} mb-10 tracking-widest`}>INUKA<span className="text-white">.OS</span></h1>
           <nav className="flex flex-col gap-3">
             {navItems.map((item) => (
-              <button key={item} onClick={() => setActiveTab(item)} className={`text-left px-4 py-3 rounded-xl transition-all duration-300 font-medium ${activeTab === item ? 'bg-[#1e293b] text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.15)] border border-blue-500/20' : 'text-gray-400 hover:text-white hover:bg-[#1e293b]/50'}`}>
+              <button key={item} onClick={() => { setActiveTab(item); setIsSidebarOpen(false); }} className={`text-left px-4 py-3 rounded-xl transition-all duration-300 font-medium ${activeTab === item ? `${c.bgActiveTab} ${c.textAccent} ${c.shadowModal} ${c.borderActiveTab} border` : 'text-gray-400 hover:text-white hover:bg-[#1e293b]/50'}`}>
                 {item}
               </button>
             ))}
           </nav>
         </div>
-        <button onClick={() => setIsFocusMode(true)} className="w-full py-3 bg-[#1e293b]/50 text-gray-400 rounded-xl hover:bg-[#1e293b] hover:text-blue-400 transition-all font-bold border border-gray-800 hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] flex items-center justify-center gap-2 group">
-          <svg className="w-4 h-4 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> FOCUS MODE
-        </button>
+        
+        <div className="flex flex-col gap-3">
+          <button onClick={() => setIsFocusMode(true)} className={`w-full py-3 ${c.bgFocusBtn} text-gray-400 rounded-xl ${c.bgFocusBtnHover} ${c.textAccent} transition-all font-bold border border-gray-800 ${c.borderFocusBtn} flex items-center justify-center gap-2 group`}>
+            <svg className={`w-4 h-4 group-hover:${c.textPrimary} transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> FOCUS
+          </button>
+          <button onClick={handleSignOut} className="w-full py-3 text-gray-500 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-all font-bold border border-transparent hover:border-red-500/30 flex items-center justify-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg> LOG OUT
+          </button>
+        </div>
       </div>
 
       {/* Main Area */}
-          <div className="flex-1 p-4 xl:p-8 overflow-y-auto relative">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+      <div className="flex-1 p-4 xl:p-8 overflow-y-auto relative">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
           <div className="flex items-center gap-4">
-      
-          <button onClick={() => setIsSidebarOpen(true)} className="xl:hidden p-2 bg-[#111827] border border-gray-800 rounded-lg text-blue-500">
-             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-          </button>
-           <div>
-              <h2 className="text-2xl xl:text-3xl font-bold tracking-tight">Welcome back, {profile?.full_name.split(' ')[0]}!</h2>
-              <p className="text-gray-400 mt-1 text-xs xl:text-sm">Logged in as <span className={c.textAccent}>{session.user.email}</span></p>
-           </div>
+            <button onClick={() => setIsSidebarOpen(true)} className="xl:hidden p-2 bg-[#111827] border border-gray-800 rounded-lg text-blue-500">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+            <div>
+              <h2 className="text-2xl xl:text-3xl font-bold tracking-tight">Welcome back, {profile?.full_name?.split(' ')[0]}!</h2>
+              <p className="text-gray-400 mt-1 text-sm">Logged in as <span className={c.textAccent}>{session.user.email}</span></p>
+            </div>
           </div>
+          
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <button onClick={() => setIsModalOpen(true)} className={`${c.bgPrimary} ${c.bgPrimaryHover} text-white px-5 py-3 rounded-xl font-semibold ${c.shadowBtn} transition-all duration-300 flex items-center gap-2`}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg> Add Record
+            </button>
+            <div className={`bg-[#111827] px-6 py-4 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center gap-5 border border-gray-800/80 ${c.borderWidgetHover} ${c.borderActiveTab} transition-all duration-300`}>
+              <span className={`text-2xl font-bold ${c.textPrimary} w-[110px] whitespace-nowrap text-center tracking-wide`}>{standardTime}</span>
+              <span className="h-6 w-[1px] bg-gray-700 hidden sm:block"></span>
+              <span className="text-gray-300 font-medium hidden sm:flex items-center gap-2">Kurunegala, {weather.temp}°C <span>{weather.icon}</span></span>
+            </div>
+          </div>
+        </div>
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-xl font-semibold shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg> Add Record
             </button>
