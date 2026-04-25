@@ -56,6 +56,7 @@ function App() {
   // DATABASE FETCHING LOGIC (WITH ERROR LOGGING)
   // ==========================================
   const fetchAllData = async () => {
+    if (!session || !profile) return;
     const today = new Date();
     let pastDate = new Date();
 
@@ -207,7 +208,7 @@ function App() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
             <div>
-              <h2 className="text-2xl xl:text-3xl font-bold tracking-tight">Welcome back, {profile?.full_name?.split(' ')[0]}!</h2>
+              <h2 className="text-2xl xl:text-3xl font-bold tracking-tight">Welcome back, {profile ? profile.full_name.split(' ')[0] : 'Operator'}{profile?.full_name?.split(' ')[0]}!</h2>
               <p className="text-gray-400 mt-1 text-sm">Logged in as <span className={c.textAccent}>{session.user.email}</span></p>
             </div>
           </div>
