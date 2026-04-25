@@ -9,6 +9,10 @@ function App() {
   const [formType, setFormType] = useState('study'); 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [timeFilter, setTimeFilter] = useState('weekly'); 
+  const [todos, setTodos] = useState([]); 
+  const [newTask, setNewTask] = useState(''); 
+  const [editingSubjects, setEditingSubjects] = useState(''); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [time, setTime] = useState(new Date());
   const [weather, setWeather] = useState({ temp: '--', condition: 'Loading...', icon: '🌤️' });
