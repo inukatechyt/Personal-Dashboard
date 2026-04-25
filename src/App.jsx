@@ -155,7 +155,34 @@ function App() {
 
   const [activeTab, setActiveTab] = useState('Dashboard');
   const navItems = ['Dashboard', 'Time & Study', 'Finance', 'Settings'];
-
+// --- Dynamic Theme Object (මේක return එකට උඩින් අනිවාර්යයෙන්ම තියෙන්න ඕන) ---
+  const isFemale = profile?.gender === 'female';
+  const c = {
+    textPrimary: isFemale ? 'text-pink-500' : 'text-blue-500',
+    textAccent: isFemale ? 'text-pink-400' : 'text-blue-400',
+    bgPrimary: isFemale ? 'bg-pink-600' : 'bg-blue-600',
+    bgPrimaryHover: isFemale ? 'hover:bg-pink-500' : 'hover:bg-blue-500',
+    bgActiveTab: isFemale ? 'bg-pink-500/10' : 'bg-blue-500/10',
+    bgFocusBtn: isFemale ? 'bg-pink-500/10' : 'bg-blue-500/10',
+    bgFocusBtnHover: isFemale ? 'hover:bg-pink-500/20' : 'hover:bg-blue-500/20',
+    bgBadge: isFemale ? 'bg-pink-500/10' : 'bg-blue-500/10',
+    bgTodoCheck: isFemale ? 'bg-pink-600' : 'bg-blue-600',
+    bgPulse: isFemale ? 'bg-pink-500' : 'bg-blue-500',
+    borderPrimary: isFemale ? 'border-pink-500' : 'border-blue-500',
+    borderActiveTab: isFemale ? 'border-pink-500/20' : 'border-blue-500/20',
+    borderBadge: isFemale ? 'border-pink-500/20' : 'border-blue-500/20',
+    borderWidgetHover: isFemale ? 'hover:border-pink-500/40' : 'hover:border-blue-500/40',
+    borderFocusBtn: isFemale ? 'border-pink-500/20' : 'border-blue-500/20',
+    borderModalPrimary: isFemale ? 'border-pink-500/30' : 'border-blue-500/30',
+    borderTodoCheck: isFemale ? 'border-pink-600' : 'border-blue-600',
+    shadowBtn: isFemale ? 'shadow-[0_0_20px_rgba(236,72,153,0.3)]' : 'shadow-[0_0_20px_rgba(59,130,246,0.3)]',
+    shadowWidgetHover: isFemale ? 'hover:shadow-[0_0_25px_rgba(236,72,153,0.15)]' : 'hover:shadow-[0_0_25px_rgba(59,130,246,0.15)]',
+    shadowModal: isFemale ? 'shadow-[0_0_40px_rgba(236,72,153,0.15)]' : 'shadow-[0_0_40px_rgba(59,130,246,0.15)]',
+    shadowFocusBar: isFemale ? 'shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'shadow-[0_0_10px_rgba(59,130,246,0.5)]',
+    glowAmbience: isFemale ? 'rgba(236,72,153,0.2)' : 'rgba(59,130,246,0.2)',
+    chartPrimary: isFemale ? '#ec4899' : '#3b82f6',
+    chartSecondary: isFemale ? '#831843' : '#1e3a8a',
+  };
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
