@@ -212,27 +212,17 @@ function App() {
               <p className="text-gray-400 mt-1 text-sm">Logged in as <span className={c.textAccent}>{session.user.email}</span></p>
             </div>
           </div>
-          
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <button onClick={() => setIsModalOpen(true)} className={`${c.bgPrimary} ${c.bgPrimaryHover} text-white px-5 py-3 rounded-xl font-semibold ${c.shadowBtn} transition-all duration-300 flex items-center gap-2`}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg> Add Record
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+              Add Record
             </button>
             <div className={`bg-[#111827] px-6 py-4 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center gap-5 border border-gray-800/80 ${c.borderWidgetHover} ${c.borderActiveTab} transition-all duration-300`}>
               <span className={`text-2xl font-bold ${c.textPrimary} w-[110px] whitespace-nowrap text-center tracking-wide`}>{standardTime}</span>
               <span className="h-6 w-[1px] bg-gray-700 hidden sm:block"></span>
               <span className="text-gray-300 font-medium hidden sm:flex items-center gap-2">Kurunegala, {weather.temp}°C <span>{weather.icon}</span></span>
             </div>
-          </div>
-        </div>
-            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-            <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-xl font-semibold shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg> Add Record
-            </button>
-            <div className="bg-[#111827] px-6 py-4 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center gap-5 border border-gray-800/80 hover:border-blue-500/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300">
-              <span className="text-2xl font-bold text-blue-500 w-[110px] whitespace-nowrap text-center tracking-wide">{standardTime}</span>
-              <span className="h-6 w-[1px] bg-gray-700"></span>
-              <span className="text-gray-300 font-medium flex items-center gap-2">Kurunegala, {weather.temp}°C <span className="text-xl">{weather.icon}</span></span>
-            </div>
+
           </div>
         </div>
 
